@@ -24,9 +24,21 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
-}
+
+function getFinals(data) {
+    let toFinals = []
+    
+    
+    function Finals (value){
+        if (value.Stage === "Final"){
+            return value["Home Team Name"];
+        }
+    }
+    toFinals = data.filter(Finals);
+    return toFinals;
+ }
+
+
 
 
 
@@ -36,8 +48,13 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(array, callback) {
+    
+    const newArray = array.map((years, index)=>{
+        return years["Year"];
+    })
+
+    return newArray;
 }
 
 
@@ -49,8 +66,23 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(array, callback) {
+    const winners = array.map((years,index)=>{
+        let winningCountry = "";
+        let awayGoals = years["Away Team Goals"];
+        let homeGoals = years["Home Team Goals"];
+        if (homeGoals > awayGoals){
+            winningCountry = years["Home Team Name"];
+        }
+        else if (awayGoals > homeGoals){
+            winningCountry = years["Away Team Name"];
+        }
+        console.log(winningCountry);
+        return winningCountry;
+
+    })
+
+    return winners;
 }
 
 
